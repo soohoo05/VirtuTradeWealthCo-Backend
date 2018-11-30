@@ -1,4 +1,4 @@
 class UserCrypto < ApplicationRecord
-  belongs_to :user_id
-  belongs_to :crypto_id
+  belongs_to :user
+  belongs_to :ccurrency
 end
