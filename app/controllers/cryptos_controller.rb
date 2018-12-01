@@ -8,6 +8,7 @@ class CryptosController < ApplicationController
   end
 
   def show
+    #require 'pry'; binding.pry
     symbol = params['id']
     response = RestClient.get("https://api.binance.com/api/v1/ticker/24hr?symbol=#{symbol.upcase}")
     json_response = JSON.parse(response.body)
