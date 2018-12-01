@@ -1,2 +1,0 @@
-class UsercryptosController < ApplicationController
-end
