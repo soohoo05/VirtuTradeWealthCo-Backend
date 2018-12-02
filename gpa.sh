@@ -1,0 +1,1 @@
+git push partner && git push nas
