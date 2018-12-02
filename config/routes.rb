@@ -3,4 +3,8 @@ Rails.application.routes.draw do
   get '/users/:username', to: 'users#find_user'
   resources :users
   resources :cryptos
+  scope "/auth", controller: :auth do
+    post '/login' => :create
+    get '/logout' => :destroy
+  end
 end
