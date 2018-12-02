@@ -11,7 +11,6 @@ class CryptosController < ApplicationController
 
   def show
     #https://api.binance.com/api/v1/ticker/24hr?symbol=#{symbol.upcase}
-    #require 'pry'; binding.pry
     currency_id = params['id']
     response = RestClient.get("https://api.coinmarketcap.com/v2/ticker/#{currency_id}")
     json_response = JSON.parse(response)
