@@ -18,10 +18,11 @@ class CryptosController < ApplicationController
   end
 
   def create
-    require 'pry'; binding.pry
-    @crypto = Crypto.create(crypto_params)
-    if @crypto.valid?
-      render json:@crypto
+    #require 'pry'; binding.pry
+
+    @crypto = current_user.cryptos.new(crypto_params)
+    if @crypto.save
+      render json: @crypto
     else
       render json: {"error": @crypto.errors.full_messages}, status: 422
     end    
@@ -30,7 +31,7 @@ class CryptosController < ApplicationController
   private
 
   def crypto_params
-    params.require(:crypto).permit(:name, :symbol, :website_slug, :rank, :circulating_supply, :total_supply, :max_supply, :price, :volume, :market_cap, :user_id)
+    params.permit(:name, :symbol, :website_slug, :rank, :circulating_supply, :total_supply, :max_supply, :price, :volume, :market_cap)
   end
 
 end

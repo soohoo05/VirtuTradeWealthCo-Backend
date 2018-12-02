@@ -2,13 +2,15 @@ class AuthController < ApplicationController
   def create
     user = User.find_by({username: params[:username]})
     if (user && user.authenticate(params[:password]))
-      token = JwtAuth.encode(username: user.username)
-      render json: { token: user.token}
+      token = generate_token(user)
+      render json: { token: token}
     else
       render json: {error: 'Invalid Password!'}
     end
   end
 
   def destroy
+    # makew JWT token xpire
+    render json: {message: 'user logged out!'}
   end
 end

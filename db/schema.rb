@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_030049) do
+ActiveRecord::Schema.define(version: 2018_12_02_160759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_12_02_030049) do
   create_table "cryptos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.string "name"
     t.string "symbol"
     t.string "website_slug"
@@ -28,7 +29,6 @@ ActiveRecord::Schema.define(version: 2018_12_02_030049) do
     t.float "price"
     t.float "volume"
     t.float "market_cap"
-    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2018_12_02_030049) do
     t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
 end

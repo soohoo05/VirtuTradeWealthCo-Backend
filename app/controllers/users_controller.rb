@@ -3,10 +3,12 @@ class UsersController < ApplicationController
 def create
   @user= User.create(user_params)
   if @user.valid?
-  render json:@user
-else
-  render json: {"error": @user.errors.full_messages}, status: 422
-end
+    generate_token(@user)
+    token = generate_token(user)
+    render json: { token: token}
+  else
+    render json: {"error": @user.errors.full_messages}, status: 422
+  end
 end
 
 def destroy
