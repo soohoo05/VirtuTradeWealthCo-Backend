@@ -17,21 +17,4 @@ class CryptosController < ApplicationController
     render json: json_response['data']
   end
 
-  def create
-    #require 'pry'; binding.pry
-
-    @crypto = current_user.cryptos.new(crypto_params)
-    if @crypto.save
-      render json: @crypto
-    else
-      render json: {"error": @crypto.errors.full_messages}, status: 422
-    end    
-  end
-
-  private
-
-  def crypto_params
-    params.permit(:name, :symbol, :website_slug, :rank, :circulating_supply, :total_supply, :max_supply, :price, :volume, :market_cap)
-  end
-
 end
