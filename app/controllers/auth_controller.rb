@@ -5,7 +5,7 @@ class AuthController < ApplicationController
       token = generate_token(user)
       render json: { token: token}
     else
-      render json: {error: 'Invalid Password!'}
+      render json: {error: 'Invalid Password!'}, status: 400
     end
   end
 

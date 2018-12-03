@@ -12,7 +12,6 @@ class AssetsController < ApplicationController
 
   def create
     #require 'pry'; binding.pry
-
     @asset = current_user.assets.new(crypto_params)
     if @asset.save
       render json: @asset
