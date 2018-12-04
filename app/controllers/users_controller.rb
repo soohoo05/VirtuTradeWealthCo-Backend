@@ -4,8 +4,8 @@ def create
   @user= User.create(user_params)
   if @user.valid?
     generate_token(@user)
-    token = generate_token(user)
-    render json: { token: token}
+    token = generate_token(@user)
+    render json: { user_id: @user.id, username: @user.username ,token: token}
   else
     render json: {"error": @user.errors.full_messages}, status: 422
   end

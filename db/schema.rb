@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2018_12_02_160759) do
   create_table "assets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
     t.string "name"
     t.string "symbol"
     t.string "website_slug"
@@ -29,6 +28,21 @@ ActiveRecord::Schema.define(version: 2018_12_02_160759) do
     t.float "price"
     t.float "volume"
     t.float "market_cap"
+    t.integer "user_id"
+  end
+
+  create_table "c_currencies", force: :cascade do |t|
+    t.string "name"
+    t.string "symbol"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_cryptos", force: :cascade do |t|
+    t.integer "user"
+    t.integer "crypto"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
