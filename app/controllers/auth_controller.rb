@@ -3,7 +3,12 @@ class AuthController < ApplicationController
     user = User.find_by({username: params[:username]})
     if (user && user.authenticate(params[:password]))
       token = generate_token(user)
-      render json: { user_id: user.id,username:user.username,token: token}
+      
+      render json: {
+         user_id: user.id,
+          name: user.name,
+          username: user.username,
+          token: token}
     else
       render json: {error: 'Invalid Password!'}, status: 400
     end
@@ -18,7 +23,9 @@ class AuthController < ApplicationController
     
       @user = User.find(id)
       if @user
-        render json: {user_id: @user.id, username: @user.username}
+        render json: {user_id: @user.id, 
+          name: user.name ,
+          username: @user.username}
       else
         render json: {error: "some error"}, status: 422
       end
