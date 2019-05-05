@@ -5,7 +5,9 @@ def create
   if @user.valid?
     generate_token(@user)
     token = generate_token(@user)
-    render json: { user_id: @user.id, username: @user.username ,token: token}
+    render json: { user_id: @user.id,
+       username: @user.username , 
+       name: @user.name, token: token}
   else
     render json: {"error": @user.errors.full_messages}, status: 422
   end
@@ -18,8 +20,8 @@ end
 
 def show
   @user = User.find(params[:id])
-  @userlist = @user.ccurrencys
-  render json: {"user": @user, "currencies": @userlist}
+  @asset_list = @user.assets
+  render json: {"user": @user, "assets": @asset_list}
 end
 
 def update
@@ -34,12 +36,11 @@ end
 
 def find_user
   @user = User.find_by(username: params[:username])
-  @userlist = @user.ccurencys
+  @asset_list = @user.assets
   # byebug
-  render json: {"user": @user, "currencies": @userlist}
+  render json: {"user": @user, "assets": @asset_list}
 
 end
-
 
 
 private
